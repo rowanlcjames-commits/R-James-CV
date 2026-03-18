@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rowan James</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sand:       #F5F0E8;
+      --linen:      #EDE6D6;
+      --warm-white: #FDFAF5;
+      --gold:       #B8860B;
+      --gold-lt:    #D4A017;
+      --ink:        #1C1A16;
+      --charcoal:   #3A3630;
+      --stone:      #7A7268;
+      --border:     #D6CFC4;
+      --deep-navy:  #0D1B2A;
+      --ocean:      #1B4F72;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--warm-white);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.1rem 3.5rem;
+      background: rgba(253,250,245,0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; color: var(--ink); letter-spacing: 0.04em;
+    }
+    .nav-links { display: flex; gap: 2.8rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--stone); font-size: 0.75rem;
+      letter-spacing: 0.18em; text-transform: uppercase; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cv {
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--ink); border: 1px solid var(--border);
+      padding: 0.42rem 1.1rem; text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .nav-cv:hover { background: var(--ink); color: var(--warm-white); border-color: var(--ink); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      padding-top: 70px;
+    }
+    .hero-left {
+      background: var(--deep-navy);
+      position: relative; overflow: hidden;
+    }
+    .hero-left img {
+      width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.82;
+    }
+    .hero-left-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, transparent 55%, var(--deep-navy) 100%),
+                  linear-gradient(to top, rgba(13,27,42,0.55) 0%, transparent 40%);
+    }
+    .hero-right {
+      background: var(--deep-navy);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 5rem 5rem 5rem 4rem;
+    }
+    .hero-eyebrow {
+      font-size: 0.7rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.4rem;
+    }
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.2rem, 4.5vw, 5rem);
+      line-height: 1.06; color: #FDFAF5; margin-bottom: 0.5rem;
+    }
+    .hero-name em { color: var(--gold-lt); font-style: italic; display: block; }
+    .hero-title {
+      font-size: 0.82rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(253,250,245,0.45); margin-bottom: 2.4rem;
+    }
+    .hero-desc {
+      font-size: 0.94rem; color: rgba(253,250,245,0.68);
+      max-width: 380px; line-height: 1.9; margin-bottom: 3rem;
+    }
+    .hero-actions { display: flex; gap: 1rem; align-items: center; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: var(--gold); color: var(--ink);
+      padding: 0.82rem 2rem; text-decoration: none;
+      font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
+      font-weight: 500; transition: background 0.25s;
+    }
+    .btn-primary:hover { background: var(--gold-lt); }
+    .btn-ghost {
+      display: inline-flex; align-items: center;
+      color: rgba(253,250,245,0.55); text-decoration: none;
+      font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase;
+      border-bottom: 1px solid rgba(253,250,245,0.2); padding-bottom: 0.18rem;
+      transition: color 0.2s;
+    }
+    .btn-ghost:hover { color: #FDFAF5; }
+
+    /* SECTIONS */
+    #about      { background: var(--warm-white); padding: 7rem 5rem; }
+    #experience { background: var(--sand);       padding: 7rem 5rem; }
+    #adventures { background: var(--deep-navy);  padding: 7rem 5rem; }
+    #contact    { background: var(--warm-white); padding: 7rem 5rem; }
+
+    .section-label {
+      font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      color: var(--ink); margin-bottom: 2.4rem; line-height: 1.18;
+    }
+    .section-title em { color: var(--ocean); font-style: italic; }
+    #adventures .section-title { color: #FDFAF5; }
+    #adventures .section-title em { color: var(--gold-lt); }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid; grid-template-columns: 2fr 1.2fr;
+      gap: 6rem; align-items: start;
+    }
+    .about-text p { color: var(--charcoal); margin-bottom: 1.1rem; font-size: 0.95rem; line-height: 1.85; }
+    .about-sidebar h4 {
+      font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--stone); margin-bottom: 0.85rem; margin-top: 2rem;
+    }
+    .about-sidebar h4:first-child { margin-top: 0; }
+    .skill-list { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .skill-tag {
+      background: var(--linen); color: var(--charcoal);
+      padding: 0.32rem 0.82rem; font-size: 0.77rem; border: 1px solid var(--border);
+    }
+    .edu-block {
+      padding: 1.1rem 1.3rem; border-left: 2px solid var(--gold);
+      background: var(--sand); margin-bottom: 0.75rem;
+    }
+    .edu-block .deg   { font-weight: 500; color: var(--ink); font-size: 0.92rem; }
+    .edu-block .grade { color: var(--gold); font-size: 0.82rem; margin: 0.15rem 0; }
+    .edu-block .school{ color: var(--stone); font-size: 0.77rem; }
+
+    /* EXPERIENCE */
+    .exp-item {
+      display: grid; grid-template-columns: 210px 1fr;
+      gap: 3.5rem; padding: 2.4rem 0; border-bottom: 1px solid var(--border);
+    }
+    .exp-item:first-of-type { border-top: 1px solid var(--border); }
+    .exp-date  { font-size: 0.77rem; color: var(--gold); letter-spacing: 0.08em; margin-bottom: 0.25rem; }
+    .exp-place { font-size: 0.75rem; color: var(--stone); }
+    .exp-content h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; color: var(--ink); margin-bottom: 0.08rem;
+    }
+    .exp-co { font-size: 0.8rem; color: var(--ocean); margin-bottom: 0.75rem; }
+    .exp-bullets { padding-left: 1rem; }
+    .exp-bullets li { font-size: 0.89rem; color: var(--charcoal); line-height: 1.75; margin-bottom: 0.35rem; }
+
+    /* PHOTO GRID */
+    .adventures-intro {
+      font-size: 0.95rem; color: rgba(253,250,245,0.6);
+      max-width: 540px; margin-bottom: 3rem; line-height: 1.85;
+    }
+    .photo-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    }
+    .pc-img {
+      position: relative; overflow: hidden;
+      aspect-ratio: 4 / 3; background: #1a2a3a;
+    }
+    .pc-img img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 0.5s ease;
+    }
+    .pc:hover .pc-img img { transform: scale(1.04); }
+    .pc-caption {
+      padding: 0.6rem 0 0;
+      font-size: 0.74rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(253,250,245,0.5);
+    }
+
+    /* HIGHLIGHTS */
+    .highlights-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      margin-top: 4rem; border: 1px solid rgba(253,250,245,0.1);
+    }
+    .hl-card { padding: 2rem 1.8rem; border-right: 1px solid rgba(253,250,245,0.1); }
+    .hl-card:last-child { border-right: none; }
+    .hl-icon  { font-size: 1.4rem; margin-bottom: 1rem; }
+    .hl-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: #FDFAF5; margin-bottom: 0.55rem; }
+    .hl-desc  { font-size: 0.83rem; color: rgba(253,250,245,0.52); line-height: 1.75; }
+
+    /* CONTACT */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+    .contact-text { font-size: 0.95rem; color: var(--charcoal); line-height: 1.85; margin-bottom: 2.5rem; }
+    .contact-detail { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+    .contact-icon { opacity: 0.5; }
+    .contact-detail a { color: var(--charcoal); text-decoration: none; font-size: 0.88rem; }
+    .contact-detail a:hover { color: var(--gold); }
+    .contact-detail span { font-size: 0.88rem; }
+    .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+    .form-group   { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group label {
+      font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--stone);
+    }
+    .form-group input,
+    .form-group textarea {
+      background: var(--sand); border: 1px solid var(--border);
+      color: var(--ink); font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem; font-weight: 300; padding: 0.82rem 1rem;
+      outline: none; transition: border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: var(--gold); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-submit {
+      background: var(--ink); color: var(--warm-white); border: none; cursor: pointer;
+      font-family: 'DM Sans', sans-serif; font-size: 0.75rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      padding: 0.9rem 2rem; align-self: flex-start; transition: background 0.25s;
+    }
+    .form-submit:hover { background: var(--gold); color: var(--ink); }
+    .form-note { font-size: 0.8rem; color: var(--stone); }
+
+    /* FOOTER */
+    footer {
+      background: var(--ink); padding: 2rem 5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.75rem; color: rgba(253,250,245,0.35); letter-spacing: 0.08em;
+    }
+    footer a { color: rgba(253,250,245,0.45); text-decoration: none; }
+    footer a:hover { color: var(--gold); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { min-height: 60vw; }
+      .hero-right { padding: 3.5rem 2rem; }
+      #about, #experience, #adventures, #contact { padding: 5rem 2rem; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .photo-grid { grid-template-columns: 1fr 1fr; }
+      .highlights-grid { grid-template-columns: 1fr 1fr; }
+      footer { padding: 2rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-logo">Rowan James</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#adventures">Adventures</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="R_James_CV_07_March.pdf" download class="nav-cv">Download CV</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <img src="yachting.jpg" alt="On the water" />
+      <div class="hero-left-overlay"></div>
+    </div>
+    <div class="hero-right">
+      <p class="hero-eyebrow">Civil Engineer &nbsp;·&nbsp; Analytical Generalist</p>
+      <h1 class="hero-name">Rowan<em>James</em></h1>
+      <p class="hero-title">Cape Town, South Africa</p>
+      <p class="hero-desc">
+        Engineer by training, generalist by instinct. Two and a half years delivering
+        complex projects across Africa, now looking to apply that foundation in a
+        broader business context.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Get in touch →</a>
+        <a href="#experience" class="btn-ghost">View work</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-grid">
+      <div>
+        <p class="section-label">Profile</p>
+        <h2 class="section-title">Naturally <em>curious</em>,<br>built for complexity</h2>
+        <div class="about-text">
+          <p>I'm a civil engineer with experience in geotechnical consulting — specifically tailings (mine waste) engineering — across South Africa, Ghana, and Angola. My work spanned the full project lifecycle: proposals, design, modelling, reporting, and on-site delivery.</p>
+          <p>I'm drawn to problems that sit at the intersection of engineering, data, and decision-making. I tend to back myself, move quickly, and care a lot about the quality of the work I put out.</p>
+          <p>Now back in Cape Town after four months as a superyacht deckhand, I'm looking to apply my analytical foundation in a broader business or strategic context — ideally somewhere that values both rigour and ambition.</p>
+        </div>
+      </div>
+      <div class="about-sidebar">
+        <h4>Core skills</h4>
+        <div class="skill-list">
+          <span class="skill-tag">Data analysis &amp; modelling</span>
+          <span class="skill-tag">Report writing</span>
+          <span class="skill-tag">Client management</span>
+          <span class="skill-tag">Microsoft Office Suite</span>
+          <span class="skill-tag">AutoCAD</span>
+          <span class="skill-tag">FEM analysis</span>
+          <span class="skill-tag">First principles thinking</span>
+          <span class="skill-tag">AI tools</span>
+        </div>
+        <h4>Education</h4>
+        <div class="edu-block">
+          <div class="deg">BEng Civil Engineering</div>
+          <div class="grade">Cum Laude</div>
+          <div class="school">Stellenbosch University · 2019–2022</div>
+        </div>
+        <div class="edu-block">
+          <div class="deg">Quest Africa Gap Year</div>
+          <div class="grade">Top Male Student</div>
+          <div class="school">2018</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <p class="section-label">Work</p>
+    <h2 class="section-title">Experience</h2>
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-date">Jan 2023 – Jun 2025</div>
+        <div class="exp-place">Cape Town, South Africa</div>
+      </div>
+      <div class="exp-content">
+        <h3>Civil Engineer (Geotechnical)</h3>
+        <div class="exp-co">SRK Consulting</div>
+        <ul class="exp-bullets">
+          <li>Worked in the tailings (mine waste) department across projects in South Africa, Ghana, and Angola — covering the full lifecycle from proposals through to delivery and reporting.</li>
+          <li>Led data analysis, design, and reporting on tailings storage facility design, monitoring, and closure projects, frequently as lead author working directly with clients.</li>
+          <li>Co-authored a published paper on seepage modelling for tailings facility closure planning (Tailings and Mine Waste Conference, Vancouver 2024).</li>
+          <li>Conducted on-site quality assurance for construction of a drainage system at a mine in Limpopo (2 months on site).</li>
+          <li>Championed AI adoption in the office through hands-on testing, feedback presentations, and peer training.</li>
+          <li>Supported project administration including proposals, invoicing, and scheduling alongside technical delivery.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div>
+        <div class="exp-date">Nov 2025 – Apr 2026</div>
+        <div class="exp-place">USA / Bahamas</div>
+      </div>
+      <div class="exp-content">
+        <h3>Superyacht Deckhand</h3>
+        <div class="exp-co">Private Motor Vessel</div>
+        <ul class="exp-bullets">
+          <li>Took initiative to secure the role independently, completing the required certifications and relocating to Florida.</li>
+          <li>Gained hands-on experience living and working in close quarters with a small international crew, learning to adapt quickly to different personalities and high-pressure situations.</li>
+          <li>Responsible for seamanship, navigation, vessel operations, and guest-facing service.</li>
+          <li>Gained insight into working for an ultra-high-net-worth family.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADVENTURES -->
+  <section id="adventures">
+    <p class="section-label">Beyond the office</p>
+    <h2 class="section-title">Life lived <em>fully</em></h2>
+    <p class="adventures-intro">
+      Curiosity is best measured by what you do when no one's watching.
+      A few things I've chosen to do with my time.
+    </p>
+
+    <div class="photo-grid">
+      <div class="pc">
+        <div class="pc-img"><img src="yachting.jpg" alt="On the water" /></div>
+        <div class="pc-caption">On the water — Bahamas</div>
+      </div>
+      <div class="pc">
+        <div class="pc-img"><img src="Yachting2.jpg" alt="Life aboard" /></div>
+        <div class="pc-caption">Life aboard</div>
+      </div>
+      <div class="pc">
+        <div class="pc-img"><img src="kiting.jpg" alt="Kiteboarding" /></div>
+        <div class="pc-caption">Kiteboarding</div>
+      </div>
+      <div class="pc">
+        <div class="pc-img"><img src="6100.jpg" alt="High altitude hiking" /></div>
+        <div class="pc-caption">South America — high altitude</div>
+      </div>
+      <div class="pc">
+        <div class="pc-img"><img src="SouthAmerica.jpg" alt="South America" /></div>
+        <div class="pc-caption">South America</div>
+      </div>
+      <div class="pc">
+        <div class="pc-img"><img src="Indonesia.jpg" alt="Indonesia" /></div>
+        <div class="pc-caption">Indonesia</div>
+      </div>
+      <div class="pc">
+        <div class="pc-img"><img src="Quest.jpg" alt="Quest Africa" /></div>
+        <div class="pc-caption">Quest Africa Gap Year</div>
+      </div>
+      <div class="pc">
+        <div class="pc-img"><img src="sitework.jpg" alt="On site, Limpopo" /></div>
+        <div class="pc-caption">On site — Limpopo</div>
+      </div>
+      <div class="pc">
+        <div class="pc-img"><img src="minework.jpg" alt="Mine site" /></div>
+        <div class="pc-caption">Mine site, South Africa</div>
+      </div>
+    </div>
+
+    <div class="highlights-grid">
+      <div class="hl-card">
+        <div class="hl-icon">🏔️</div>
+        <div class="hl-title">South America</div>
+        <div class="hl-desc">Backpacking and hiking through Patagonia, Bolivia, and Peru with gear support from First Ascent.</div>
+      </div>
+      <div class="hl-card">
+        <div class="hl-icon">🎒</div>
+        <div class="hl-title">Backpacking &amp; Photography</div>
+        <div class="hl-desc">Travel through South America and Southeast Asia — hiking, photography, motorcycling, and scuba diving.</div>
+      </div>
+      <div class="hl-card">
+        <div class="hl-icon">⚓</div>
+        <div class="hl-title">Superyacht Deckhand</div>
+        <div class="hl-desc">Four months crewing a private motor vessel through Florida and the Bahamas. Small crew, big ocean.</div>
+      </div>
+      <div class="hl-card">
+        <div class="hl-icon">🌍</div>
+        <div class="hl-title">Quest Africa</div>
+        <div class="hl-desc">Gap year programme in South Africa focused on character development and pushing outside your comfort zone. Top Male Student 2018.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-grid">
+      <div>
+        <p class="section-label">Get in touch</p>
+        <h2 class="section-title">Let's <em>talk</em></h2>
+        <p class="contact-text">
+          I'm open to conversations about analytical, generalist, or impact-driven roles —
+          in engineering, business, strategy, or anything in between.
+          If something here resonated, I'd love to hear from you.
+        </p>
+        <div class="contact-detail">
+          <span class="contact-icon">✉</span>
+          <a href="mailto:rowanlcjames@gmail.com">rowanlcjames@gmail.com</a>
+        </div>
+        <div class="contact-detail">
+          <span class="contact-icon">📞</span>
+          <a href="tel:+27825290310">+27 82 529 0310</a>
+        </div>
+        <div class="contact-detail">
+          <span class="contact-icon">📍</span>
+          <span>Cape Town, South Africa</span>
+        </div>
+      </div>
+      <div>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label>Your name</label>
+            <input type="text" placeholder="Jane Smith" required />
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="jane@company.com" required />
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea placeholder="Tell me about the opportunity..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send message →</button>
+          <p class="form-note" id="form-note"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 Rowan James</span>
+    <span>Cape Town · <a href="mailto:rowanlcjames@gmail.com">rowanlcjames@gmail.com</a></span>
+  </footer>
+
+  <script>
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      nav.style.boxShadow = window.scrollY > 20 ? '0 2px 24px rgba(28,26,22,0.08)' : 'none';
+    });
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      const name = e.target.querySelector('input[type=text]').value;
+      const email = e.target.querySelector('input[type=email]').value;
+      const msg = e.target.querySelector('textarea').value;
+      const subject = encodeURIComponent('Hello from ' + name);
+      const body = encodeURIComponent(msg + '\n\nReply to: ' + email);
+      window.location.href = 'mailto:rowanlcjames@gmail.com?subject=' + subject + '&body=' + body;
+      document.getElementById('form-note').textContent = 'Opening your email client…';
+    }
+  </script>
+</body>
+</html>
