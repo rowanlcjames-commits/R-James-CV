@@ -3,492 +3,899 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rowan James</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <meta name="theme-color" content="#0A1A2B" />
+  <title>Rowan James · Engineer · Generalist</title>
+  <meta name="description" content="Civil engineer and analytical generalist. Curious by nature, analytical by training. Looking for the next hard problem worth solving." />
+  <meta name="author" content="Rowan James" />
+
+  <!-- Open Graph / Social Preview -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Rowan James · Engineer · Generalist" />
+  <meta property="og:description" content="Civil engineer and analytical generalist. Looking for the next hard problem worth solving." />
+  <meta property="og:image" content="img/southamerica.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Rowan James" />
+  <meta name="twitter:description" content="Engineer · Generalist · Always learning. Cape Town." />
+
+  <!-- Favicon (inline SVG) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230A1A2B'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='17' font-weight='700' fill='%23C9A961' text-anchor='middle'%3ERJ%3C/text%3E%3C/svg%3E" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    ::selection { background: #C9A961; color: #0D0B08; }
 
     :root {
-      --sand:       #F5F0E8;
-      --linen:      #EDE6D6;
-      --warm-white: #FDFAF5;
-      --gold:       #B8860B;
-      --gold-lt:    #D4A017;
-      --ink:        #1C1A16;
-      --charcoal:   #3A3630;
-      --stone:      #7A7268;
-      --border:     #D6CFC4;
-      --deep-navy:  #0D1B2A;
-      --ocean:      #1B4F72;
+      --bg:        #F7F3EA;
+      --surface:   #FDFAF3;
+      --sand:      #EFE7D5;
+      --line:      #D5CEC2;
+      --ink:       #0D0B08;
+      --charcoal:  #2D2822;
+      --stone:     #6B645B;
+      --navy:      #0A1A2B;
+      --navy-2:    #122638;
+      --gold:      #C9A961;
+      --gold-hi:   #E0BC6E;
+      --rust:      #B24B1F;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--warm-white);
+      background: var(--bg);
       color: var(--ink);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      line-height: 1.8;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 400;
+      line-height: 1.65;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
-    /* NAV */
+    a { color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    .serif {
+      font-family: 'Fraunces', Georgia, serif;
+      font-variation-settings: "opsz" 96, "SOFT" 30;
+    }
+
+    .wrap { max-width: 1240px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ================ NAV ================ */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; justify-content: space-between; align-items: center;
-      padding: 1.1rem 3.5rem;
-      background: rgba(253,250,245,0.95);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
+      padding: 1rem 1.5rem;
+      background: rgba(247, 243, 234, 0.82);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s, box-shadow 0.3s;
     }
+    nav.scrolled { border-color: var(--line); box-shadow: 0 1px 20px rgba(13,11,8,0.04); }
     .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem; color: var(--ink); letter-spacing: 0.04em;
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      font-size: 1.15rem;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      text-decoration: none;
     }
-    .nav-links { display: flex; gap: 2.8rem; list-style: none; }
+    .nav-links { display: none; gap: 2.4rem; list-style: none; }
     .nav-links a {
-      text-decoration: none; color: var(--stone); font-size: 0.75rem;
-      letter-spacing: 0.18em; text-transform: uppercase; transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--gold); }
-    .nav-cv {
+      text-decoration: none; color: var(--charcoal);
       font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--ink); border: 1px solid var(--border);
-      padding: 0.42rem 1.1rem; text-decoration: none;
-      transition: background 0.2s, border-color 0.2s;
+      font-weight: 500; transition: color 0.2s;
+      position: relative;
     }
-    .nav-cv:hover { background: var(--ink); color: var(--warm-white); border-color: var(--ink); }
+    .nav-links a::after {
+      content: ''; position: absolute; left: 0; bottom: -4px;
+      width: 0; height: 1px; background: var(--gold);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cv {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 500; color: var(--ink);
+      border: 1px solid var(--ink);
+      padding: 0.55rem 1.1rem;
+      text-decoration: none;
+      transition: background 0.25s, color 0.25s;
+    }
+    .nav-cv:hover { background: var(--ink); color: var(--bg); }
+    @media (min-width: 880px) {
+      nav { padding: 1.1rem 3rem; }
+      .nav-links { display: flex; }
+    }
 
-    /* HERO */
+    /* ================ HERO ================ */
     .hero {
       min-height: 100vh;
-      display: grid; grid-template-columns: 1fr 1fr;
-      padding-top: 70px;
+      display: grid;
+      grid-template-columns: 1fr;
+      background: var(--bg);
+      padding-top: 68px;
     }
-    .hero-left {
-      background: var(--deep-navy);
+    .hero-media {
       position: relative; overflow: hidden;
+      min-height: 44vh;
+      background: var(--navy);
     }
-    .hero-left img {
-      width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.82;
-    }
-    .hero-left-overlay {
+    .hero-media img {
+      width: 100%; height: 100%; object-fit: cover;
       position: absolute; inset: 0;
-      background: linear-gradient(to right, transparent 55%, var(--deep-navy) 100%),
-                  linear-gradient(to top, rgba(13,27,42,0.55) 0%, transparent 40%);
     }
-    .hero-right {
-      background: var(--deep-navy);
+    .hero-media::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(10,26,43,0.15) 0%, rgba(10,26,43,0.55) 100%);
+    }
+    .hero-media-tag {
+      position: absolute; bottom: 1.5rem; left: 1.5rem; z-index: 2;
+      font-size: 0.66rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: rgba(253,250,245,0.72);
+    }
+    .hero-content {
+      padding: 3rem 1.5rem 4rem;
       display: flex; flex-direction: column; justify-content: center;
-      padding: 5rem 5rem 5rem 4rem;
     }
     .hero-eyebrow {
-      font-size: 0.7rem; letter-spacing: 0.28em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 1.4rem;
+      font-size: 0.68rem; letter-spacing: 0.32em; text-transform: uppercase;
+      color: var(--rust); font-weight: 600; margin-bottom: 1.6rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; width: 24px; height: 1px; background: var(--rust);
     }
     .hero-name {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(3.2rem, 4.5vw, 5rem);
-      line-height: 1.06; color: #FDFAF5; margin-bottom: 0.5rem;
+      font-family: 'Fraunces', serif;
+      font-variation-settings: "opsz" 144, "wght" 400, "SOFT" 40;
+      font-size: clamp(0.92rem, 2vw, 1.05rem);
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-bottom: 1.6rem;
     }
-    .hero-name em { color: var(--gold-lt); font-style: italic; display: block; }
-    .hero-title {
-      font-size: 0.82rem; letter-spacing: 0.14em; text-transform: uppercase;
-      color: rgba(253,250,245,0.45); margin-bottom: 2.4rem;
+    .hero-headline {
+      font-family: 'Fraunces', serif;
+      font-variation-settings: "opsz" 144, "wght" 420, "SOFT" 50;
+      font-size: clamp(2.6rem, 7.5vw, 5.8rem);
+      line-height: 0.98;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 1.8rem;
+      max-width: 18ch;
     }
-    .hero-desc {
-      font-size: 0.94rem; color: rgba(253,250,245,0.68);
-      max-width: 380px; line-height: 1.9; margin-bottom: 3rem;
+    .hero-headline em {
+      font-style: italic;
+      font-variation-settings: "opsz" 144, "wght" 380;
+      color: var(--rust);
     }
-    .hero-actions { display: flex; gap: 1rem; align-items: center; }
+    .hero-sub {
+      font-size: 1.02rem; color: var(--charcoal);
+      max-width: 52ch; line-height: 1.7; margin-bottom: 2.4rem;
+      font-weight: 400;
+    }
+    .hero-actions {
+      display: flex; gap: 1.4rem; align-items: center; flex-wrap: wrap;
+    }
     .btn-primary {
       display: inline-flex; align-items: center; gap: 0.6rem;
-      background: var(--gold); color: var(--ink);
-      padding: 0.82rem 2rem; text-decoration: none;
-      font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
-      font-weight: 500; transition: background 0.25s;
+      background: var(--ink); color: var(--bg);
+      padding: 0.95rem 1.8rem; text-decoration: none;
+      font-size: 0.74rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 500; transition: background 0.25s, transform 0.2s;
     }
-    .btn-primary:hover { background: var(--gold-lt); }
+    .btn-primary:hover { background: var(--rust); transform: translateY(-1px); }
+    .btn-primary .arrow { transition: transform 0.25s; }
+    .btn-primary:hover .arrow { transform: translateX(3px); }
     .btn-ghost {
-      display: inline-flex; align-items: center;
-      color: rgba(253,250,245,0.55); text-decoration: none;
-      font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase;
-      border-bottom: 1px solid rgba(253,250,245,0.2); padding-bottom: 0.18rem;
-      transition: color 0.2s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      color: var(--charcoal); text-decoration: none;
+      font-size: 0.74rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 500;
+      border-bottom: 1px solid var(--ink);
+      padding: 0.3rem 0.1rem;
+      transition: color 0.2s, border-color 0.2s;
     }
-    .btn-ghost:hover { color: #FDFAF5; }
+    .btn-ghost:hover { color: var(--rust); border-color: var(--rust); }
 
-    /* SECTIONS */
-    #about      { background: var(--warm-white); padding: 7rem 5rem; }
-    #experience { background: var(--sand);       padding: 7rem 5rem; }
-    #adventures { background: var(--deep-navy);  padding: 7rem 5rem; }
-    #contact    { background: var(--warm-white); padding: 7rem 5rem; }
+    @media (min-width: 960px) {
+      .hero {
+        grid-template-columns: 1fr 1fr;
+        grid-auto-flow: dense;
+      }
+      .hero-media { min-height: 100vh; grid-column: 2; margin-top: -68px; }
+      .hero-content { padding: 5rem 4rem 5rem 5rem; }
+    }
+    @media (min-width: 1280px) {
+      .hero-content { padding: 5rem 6rem; }
+    }
+
+    /* ================ NUMBERS STRIP ================ */
+    .numbers {
+      background: var(--ink);
+      color: var(--bg);
+      padding: 3rem 1.5rem;
+    }
+    .numbers-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 2.5rem 1rem;
+      max-width: 1240px; margin: 0 auto;
+    }
+    .num-item { text-align: left; }
+    .num-value {
+      font-family: 'Fraunces', serif;
+      font-variation-settings: "opsz" 144, "wght" 350;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      line-height: 1; color: var(--gold-hi);
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.02em;
+    }
+    .num-label {
+      font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(253,250,245,0.55);
+      font-weight: 500;
+    }
+    @media (min-width: 720px) {
+      .numbers { padding: 4rem 3rem; }
+      .numbers-grid { grid-template-columns: repeat(4, 1fr); gap: 3rem; }
+    }
+
+    /* ================ SECTIONS ================ */
+    section.block {
+      padding: 5rem 1.5rem;
+    }
+    @media (min-width: 880px) {
+      section.block { padding: 7.5rem 3rem; }
+    }
 
     .section-label {
-      font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 0.6rem;
+      font-size: 0.66rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--rust); font-weight: 600;
+      margin-bottom: 0.9rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .section-label::before {
+      content: ''; width: 22px; height: 1px; background: var(--rust);
     }
     .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 3vw, 2.8rem);
-      color: var(--ink); margin-bottom: 2.4rem; line-height: 1.18;
+      font-family: 'Fraunces', serif;
+      font-variation-settings: "opsz" 144, "wght" 380, "SOFT" 40;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      line-height: 1.08;
+      color: var(--ink);
+      margin-bottom: 2.8rem;
+      max-width: 24ch;
+      letter-spacing: -0.015em;
     }
-    .section-title em { color: var(--ocean); font-style: italic; }
-    #adventures .section-title { color: #FDFAF5; }
-    #adventures .section-title em { color: var(--gold-lt); }
+    .section-title em { font-style: italic; color: var(--rust); font-variation-settings: "opsz" 144, "wght" 360; }
 
-    /* ABOUT */
+    /* ================ ABOUT ================ */
+    #about { background: var(--bg); }
     .about-grid {
-      display: grid; grid-template-columns: 2fr 1.2fr;
-      gap: 6rem; align-items: start;
+      display: grid; grid-template-columns: 1fr;
+      gap: 3rem;
     }
-    .about-text p { color: var(--charcoal); margin-bottom: 1.1rem; font-size: 0.95rem; line-height: 1.85; }
-    .about-sidebar h4 {
-      font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--stone); margin-bottom: 0.85rem; margin-top: 2rem;
+    .about-text p {
+      color: var(--charcoal);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 1.3rem;
+      max-width: 62ch;
     }
-    .about-sidebar h4:first-child { margin-top: 0; }
-    .skill-list { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .about-text p:first-child::first-letter {
+      font-family: 'Fraunces', serif;
+      font-size: 3.4em; float: left; line-height: 0.85;
+      margin: 0.1em 0.14em 0 0; color: var(--rust);
+      font-weight: 500;
+    }
+    .about-aside h4 {
+      font-size: 0.68rem; letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--stone); margin-bottom: 1rem; margin-top: 2.2rem;
+      font-weight: 600;
+    }
+    .about-aside h4:first-child { margin-top: 0; }
+    .skill-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .skill-tag {
-      background: var(--linen); color: var(--charcoal);
-      padding: 0.32rem 0.82rem; font-size: 0.77rem; border: 1px solid var(--border);
+      background: var(--sand); color: var(--charcoal);
+      padding: 0.38rem 0.9rem; font-size: 0.78rem;
+      border: 1px solid var(--line);
+      font-weight: 500;
+      transition: border-color 0.2s, background 0.2s;
     }
-    .edu-block {
-      padding: 1.1rem 1.3rem; border-left: 2px solid var(--gold);
-      background: var(--sand); margin-bottom: 0.75rem;
+    .skill-tag:hover { border-color: var(--gold); background: var(--surface); }
+    @media (min-width: 960px) {
+      .about-grid { grid-template-columns: 2fr 1fr; gap: 5rem; align-items: start; }
     }
-    .edu-block .deg   { font-weight: 500; color: var(--ink); font-size: 0.92rem; }
-    .edu-block .grade { color: var(--gold); font-size: 0.82rem; margin: 0.15rem 0; }
-    .edu-block .school{ color: var(--stone); font-size: 0.77rem; }
 
-    /* EXPERIENCE */
-    .exp-item {
-      display: grid; grid-template-columns: 210px 1fr;
-      gap: 3.5rem; padding: 2.4rem 0; border-bottom: 1px solid var(--border);
+    /* ================ EXPERIENCE ================ */
+    #experience { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .exp-card {
+      display: grid; grid-template-columns: 1fr;
+      gap: 1.5rem;
+      padding: 2.8rem 0;
+      border-top: 1px solid var(--line);
     }
-    .exp-item:first-of-type { border-top: 1px solid var(--border); }
-    .exp-date  { font-size: 0.77rem; color: var(--gold); letter-spacing: 0.08em; margin-bottom: 0.25rem; }
-    .exp-place { font-size: 0.75rem; color: var(--stone); }
-    .exp-content h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem; color: var(--ink); margin-bottom: 0.08rem;
+    .exp-card:first-of-type { border-top: 2px solid var(--ink); }
+    .exp-card:last-of-type { border-bottom: 2px solid var(--ink); }
+    .exp-meta { display: flex; flex-direction: column; gap: 0.2rem; }
+    .exp-date {
+      font-size: 0.76rem; letter-spacing: 0.14em;
+      color: var(--rust); font-weight: 600; text-transform: uppercase;
     }
-    .exp-co { font-size: 0.8rem; color: var(--ocean); margin-bottom: 0.75rem; }
-    .exp-bullets { padding-left: 1rem; }
-    .exp-bullets li { font-size: 0.89rem; color: var(--charcoal); line-height: 1.75; margin-bottom: 0.35rem; }
+    .exp-loc {
+      font-size: 0.78rem; color: var(--stone);
+      letter-spacing: 0.04em;
+    }
+    .exp-role {
+      font-family: 'Fraunces', serif;
+      font-variation-settings: "opsz" 96, "wght" 450;
+      font-size: clamp(1.5rem, 2.4vw, 1.95rem);
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+      letter-spacing: -0.01em;
+    }
+    .exp-company {
+      font-size: 0.86rem; color: var(--charcoal);
+      letter-spacing: 0.04em;
+      margin-bottom: 1rem;
+    }
+    .exp-pitch {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 1.08rem; line-height: 1.5;
+      color: var(--rust);
+      margin-bottom: 1.4rem;
+      max-width: 60ch;
+    }
+    .exp-highlights { list-style: none; }
+    .exp-highlights li {
+      position: relative;
+      padding-left: 1.6rem;
+      font-size: 0.96rem;
+      line-height: 1.75;
+      color: var(--charcoal);
+      margin-bottom: 0.85rem;
+      max-width: 66ch;
+    }
+    .exp-highlights li::before {
+      content: '→';
+      position: absolute; left: 0; top: 0;
+      color: var(--gold); font-weight: 600;
+    }
+    .exp-highlights a {
+      color: var(--rust); text-decoration: none;
+      border-bottom: 1px solid var(--rust);
+      padding-bottom: 1px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .exp-highlights a:hover { background: var(--sand); }
+    @media (min-width: 880px) {
+      .exp-card { grid-template-columns: 220px 1fr; gap: 3.5rem; padding: 3.2rem 0; }
+    }
 
-    /* PHOTO GRID */
-    .adventures-intro {
-      font-size: 0.95rem; color: rgba(253,250,245,0.6);
-      max-width: 540px; margin-bottom: 3rem; line-height: 1.85;
+    /* ================ EDUCATION ================ */
+    #education { background: var(--bg); }
+    .edu-grid {
+      display: grid; grid-template-columns: 1fr;
+      gap: 1.5rem; margin-top: 1rem;
     }
+    .edu-card {
+      padding: 1.6rem 1.8rem;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--gold);
+      display: flex; flex-direction: column; gap: 0.3rem;
+      transition: transform 0.25s, border-color 0.25s;
+    }
+    .edu-card:hover { border-left-color: var(--rust); transform: translateY(-2px); }
+    .edu-card a { text-decoration: none; }
+    .edu-deg {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem; font-weight: 500;
+      color: var(--ink);
+    }
+    .edu-honor {
+      font-size: 0.82rem; color: var(--rust);
+      font-weight: 600; letter-spacing: 0.04em;
+    }
+    .edu-school {
+      font-size: 0.82rem; color: var(--stone);
+      margin-top: 0.2rem;
+    }
+    .edu-link {
+      font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--charcoal); margin-top: 0.6rem;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 2px; display: inline-flex; align-self: flex-start;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .edu-link:hover { color: var(--rust); border-color: var(--rust); }
+    @media (min-width: 720px) {
+      .edu-grid { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    }
+
+    /* ================ BEYOND (DARK) ================ */
+    #beyond {
+      background: var(--navy);
+      color: var(--bg);
+    }
+    #beyond .section-label { color: var(--gold); }
+    #beyond .section-label::before { background: var(--gold); }
+    #beyond .section-title { color: var(--surface); }
+    #beyond .section-title em { color: var(--gold); }
+    .beyond-intro {
+      font-size: 1.02rem; color: rgba(253,250,245,0.72);
+      max-width: 58ch; line-height: 1.7; margin-bottom: 3.5rem;
+    }
+
     .photo-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 0.9rem;
+      margin-bottom: 4rem;
     }
-    .pc-img {
+    .photo {
       position: relative; overflow: hidden;
-      aspect-ratio: 4 / 3; background: #1a2a3a;
+      aspect-ratio: 4/3;
+      background: var(--navy-2);
     }
-    .pc-img img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      transition: transform 0.5s ease;
+    .photo img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.4s;
+      filter: saturate(0.92);
     }
-    .pc:hover .pc-img img { transform: scale(1.04); }
-    .pc-caption {
-      padding: 0.6rem 0 0;
-      font-size: 0.74rem; letter-spacing: 0.12em; text-transform: uppercase;
-      color: rgba(253,250,245,0.5);
+    .photo:hover img { transform: scale(1.05); filter: saturate(1.05); }
+    .photo-cap {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 1.8rem 1rem 0.8rem;
+      background: linear-gradient(to top, rgba(10,26,43,0.85) 0%, transparent 100%);
+      font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
+      color: rgba(253,250,245,0.88);
+      opacity: 0; transform: translateY(6px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .photo:hover .photo-cap { opacity: 1; transform: translateY(0); }
+    @media (min-width: 720px) {
+      .photo-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    }
+    @media (min-width: 1080px) {
+      .photo-grid { grid-template-columns: repeat(4, 1fr); }
     }
 
-    /* HIGHLIGHTS */
-    .highlights-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      margin-top: 4rem; border: 1px solid rgba(253,250,245,0.1);
+    .highlights {
+      display: grid; grid-template-columns: 1fr;
+      border-top: 1px solid rgba(253,250,245,0.14);
+      border-bottom: 1px solid rgba(253,250,245,0.14);
     }
-    .hl-card { padding: 2rem 1.8rem; border-right: 1px solid rgba(253,250,245,0.1); }
-    .hl-card:last-child { border-right: none; }
-    .hl-icon  { font-size: 1.4rem; margin-bottom: 1rem; }
-    .hl-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: #FDFAF5; margin-bottom: 0.55rem; }
-    .hl-desc  { font-size: 0.83rem; color: rgba(253,250,245,0.52); line-height: 1.75; }
+    .highlight {
+      padding: 2.2rem 0.3rem;
+      border-bottom: 1px solid rgba(253,250,245,0.08);
+    }
+    .highlight:last-child { border-bottom: none; }
+    .highlight-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.15rem; font-weight: 500;
+      color: var(--surface); margin-bottom: 0.6rem;
+    }
+    .highlight-title em { color: var(--gold); font-style: italic; }
+    .highlight-body {
+      font-size: 0.92rem; line-height: 1.7;
+      color: rgba(253,250,245,0.62);
+      max-width: 50ch;
+    }
+    .highlight-body a {
+      color: var(--gold); text-decoration: none;
+      border-bottom: 1px solid rgba(201,169,97,0.4);
+      transition: border-color 0.2s;
+    }
+    .highlight-body a:hover { border-color: var(--gold); }
+    @media (min-width: 880px) {
+      .highlights { grid-template-columns: repeat(3, 1fr); }
+      .highlight { padding: 2.5rem 2rem; border-bottom: none; border-right: 1px solid rgba(253,250,245,0.08); }
+      .highlight:last-child { border-right: none; }
+      .highlight:first-child { padding-left: 0; }
+    }
 
-    /* CONTACT */
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
-    .contact-text { font-size: 0.95rem; color: var(--charcoal); line-height: 1.85; margin-bottom: 2.5rem; }
-    .contact-detail { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
-    .contact-icon { opacity: 0.5; }
-    .contact-detail a { color: var(--charcoal); text-decoration: none; font-size: 0.88rem; }
-    .contact-detail a:hover { color: var(--gold); }
-    .contact-detail span { font-size: 0.88rem; }
-    .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
-    .form-group   { display: flex; flex-direction: column; gap: 0.4rem; }
-    .form-group label {
-      font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--stone);
+    /* ================ CONTACT ================ */
+    #contact { background: var(--bg); }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr;
+      gap: 3rem;
     }
-    .form-group input,
-    .form-group textarea {
-      background: var(--sand); border: 1px solid var(--border);
-      color: var(--ink); font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem; font-weight: 300; padding: 0.82rem 1rem;
-      outline: none; transition: border-color 0.2s;
+    .contact-lead {
+      font-size: 1.04rem; color: var(--charcoal);
+      line-height: 1.75; max-width: 54ch;
+      margin-bottom: 2.4rem;
     }
-    .form-group input:focus,
-    .form-group textarea:focus { border-color: var(--gold); }
-    .form-group textarea { resize: vertical; min-height: 120px; }
-    .form-submit {
-      background: var(--ink); color: var(--warm-white); border: none; cursor: pointer;
-      font-family: 'DM Sans', sans-serif; font-size: 0.75rem;
-      letter-spacing: 0.18em; text-transform: uppercase;
-      padding: 0.9rem 2rem; align-self: flex-start; transition: background 0.25s;
+    .contact-details {
+      display: flex; flex-direction: column; gap: 0.75rem;
+      margin-bottom: 2.4rem;
     }
-    .form-submit:hover { background: var(--gold); color: var(--ink); }
-    .form-note { font-size: 0.8rem; color: var(--stone); }
+    .contact-row {
+      display: flex; align-items: baseline; gap: 1rem;
+      font-size: 0.96rem;
+    }
+    .contact-row .k {
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--stone); min-width: 80px;
+      font-weight: 600;
+    }
+    .contact-row a {
+      color: var(--ink); text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .contact-row a:hover { color: var(--rust); border-color: var(--rust); }
+    .contact-actions {
+      display: flex; flex-wrap: wrap; gap: 1rem;
+    }
+    @media (min-width: 960px) {
+      .contact-grid { grid-template-columns: 1.3fr 1fr; gap: 5rem; align-items: start; }
+    }
 
-    /* FOOTER */
+    /* ================ FOOTER ================ */
     footer {
-      background: var(--ink); padding: 2rem 5rem;
-      display: flex; justify-content: space-between; align-items: center;
-      font-size: 0.75rem; color: rgba(253,250,245,0.35); letter-spacing: 0.08em;
+      background: var(--ink);
+      color: rgba(253,250,245,0.45);
+      padding: 2.5rem 1.5rem;
+      font-size: 0.76rem;
+      letter-spacing: 0.1em;
     }
-    footer a { color: rgba(253,250,245,0.45); text-decoration: none; }
+    .foot-grid {
+      max-width: 1240px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: 0.8rem;
+      align-items: flex-start;
+    }
+    footer a {
+      color: rgba(253,250,245,0.7); text-decoration: none;
+      transition: color 0.2s;
+    }
     footer a:hover { color: var(--gold); }
+    @media (min-width: 720px) {
+      footer { padding: 2.5rem 3rem; }
+      .foot-grid { flex-direction: row; justify-content: space-between; align-items: center; }
+    }
 
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      nav { padding: 1rem 1.5rem; }
-      .nav-links { display: none; }
-      .hero { grid-template-columns: 1fr; }
-      .hero-left { min-height: 60vw; }
-      .hero-right { padding: 3.5rem 2rem; }
-      #about, #experience, #adventures, #contact { padding: 5rem 2rem; }
-      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
-      .photo-grid { grid-template-columns: 1fr 1fr; }
-      .highlights-grid { grid-template-columns: 1fr 1fr; }
-      footer { padding: 2rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+    /* ================ REVEAL ANIMATION ================ */
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+      html { scroll-behavior: auto; }
+    }
+
+    /* Focus styles */
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--rust);
+      outline-offset: 3px;
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <span class="nav-logo">Rowan James</span>
+  <!-- ================ NAV ================ -->
+  <nav id="nav">
+    <a href="#top" class="nav-logo">Rowan James</a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#adventures">Adventures</a></li>
+      <li><a href="#experience">Work</a></li>
+      <li><a href="#beyond">Beyond</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <a href="R_James_CV_07_March.pdf" download class="nav-cv">Download CV</a>
+    <a href="R James CV 24042026.pdf" download class="nav-cv">Download CV</a>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-left">
-      <img src="yachting.jpg" alt="On the water" />
-      <div class="hero-left-overlay"></div>
-    </div>
-    <div class="hero-right">
-      <p class="hero-eyebrow">Civil Engineer &nbsp;·&nbsp; Analytical Generalist</p>
-      <h1 class="hero-name">Rowan<em>James</em></h1>
-      <p class="hero-title">Cape Town, South Africa</p>
-      <p class="hero-desc">
-        Engineer by training, generalist by instinct. Two and a half years delivering
-        complex projects across Africa, now looking to apply that foundation in a
-        broader business context.
-      </p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn-primary">Get in touch →</a>
-        <a href="#experience" class="btn-ghost">View work</a>
-      </div>
-    </div>
-  </section>
+  <main id="top">
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="about-grid">
-      <div>
-        <p class="section-label">Profile</p>
-        <h2 class="section-title">Naturally <em>curious</em>,<br>built for complexity</h2>
-        <div class="about-text">
-          <p>I'm a civil engineer with experience in geotechnical consulting — specifically tailings (mine waste) engineering — across South Africa, Ghana, and Angola. My work spanned the full project lifecycle: proposals, design, modelling, reporting, and on-site delivery.</p>
-          <p>I'm drawn to problems that sit at the intersection of engineering, data, and decision-making. I tend to back myself, move quickly, and care a lot about the quality of the work I put out.</p>
-          <p>Now back in Cape Town after four months as a superyacht deckhand, I'm looking to apply my analytical foundation in a broader business or strategic context — ideally somewhere that values both rigour and ambition.</p>
+    <!-- ================ HERO ================ -->
+    <section class="hero">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Engineer · Generalist · Always learning</p>
+        <p class="hero-name">Rowan James</p>
+        <h1 class="hero-headline">Curious by <em>nature</em>, analytical by training.</h1>
+        <p class="hero-sub">
+          Civil engineer with two and a half years delivering complex projects across
+          Africa. Back in Cape Town now, looking for the next hard problem. Ideally
+          somewhere that values rigour and ambition in equal measure.
+        </p>
+        <div class="hero-actions">
+          <a href="R James CV 24042026.pdf" download class="btn-primary">
+            Download CV <span class="arrow">→</span>
+          </a>
+          <a href="https://www.linkedin.com/in/rowan-james-27075a73" target="_blank" rel="noopener" class="btn-ghost">LinkedIn</a>
+          <a href="#contact" class="btn-ghost">Get in touch</a>
         </div>
       </div>
-      <div class="about-sidebar">
-        <h4>Core skills</h4>
-        <div class="skill-list">
-          <span class="skill-tag">Data analysis &amp; modelling</span>
-          <span class="skill-tag">Report writing</span>
-          <span class="skill-tag">Client management</span>
-          <span class="skill-tag">Microsoft Office Suite</span>
-          <span class="skill-tag">AutoCAD</span>
-          <span class="skill-tag">FEM analysis</span>
-          <span class="skill-tag">First principles thinking</span>
-          <span class="skill-tag">AI tools</span>
+      <div class="hero-media">
+        <img src="img/southamerica.jpg" alt="Rowan with alpacas in South America" />
+        <div class="hero-media-tag">South America · 2024</div>
+      </div>
+    </section>
+
+    <!-- ================ NUMBERS ================ -->
+    <section class="numbers" aria-label="By the numbers">
+      <div class="numbers-grid">
+        <div class="num-item reveal">
+          <div class="num-value serif">2.5<span style="font-size:0.55em">yrs</span></div>
+          <div class="num-label">Engineering delivery</div>
         </div>
-        <h4>Education</h4>
-        <div class="edu-block">
-          <div class="deg">BEng Civil Engineering</div>
-          <div class="grade">Cum Laude</div>
-          <div class="school">Stellenbosch University · 2019–2022</div>
+        <div class="num-item reveal">
+          <div class="num-value serif">3</div>
+          <div class="num-label">Countries worked</div>
         </div>
-        <div class="edu-block">
-          <div class="deg">Quest Africa Gap Year</div>
-          <div class="grade">Top Male Student</div>
-          <div class="school">2018</div>
+        <div class="num-item reveal">
+          <div class="num-value serif">6,100<span style="font-size:0.55em">m</span></div>
+          <div class="num-label">Summit attained</div>
+        </div>
+        <div class="num-item reveal">
+          <div class="num-value serif">1</div>
+          <div class="num-label">Paper published</div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <p class="section-label">Work</p>
-    <h2 class="section-title">Experience</h2>
+    <!-- ================ ABOUT ================ -->
+    <section id="about" class="block">
+      <div class="wrap">
+        <p class="section-label">Who I am</p>
+        <h2 class="section-title reveal">Wired for problems that don't come with <em>instructions</em>.</h2>
+        <div class="about-grid">
+          <div class="about-text reveal">
+            <p>
+              I'm a civil engineer with two and a half years in geotechnical consulting,
+              specifically tailings engineering, delivering projects across South Africa, Ghana,
+              and Angola. I ran the full project lifecycle: proposals, design, modelling, on site
+              QA, reporting, and direct client work.
+            </p>
+            <p>
+              I'm drawn to the intersection of engineering, data, and decision making. I move
+              fast, back my own judgement, and care deeply about the quality of what I put my
+              name on. At SRK, I was lead author on reports for clients, contributed to a
+              published paper on seepage modelling, and pushed the office to adopt AI tools
+              through testing, internal presentations, and peer training.
+            </p>
+            <p>
+              Between SRK and now I took a short personal chapter, in the same spirit as my gap
+              year, to back myself, step outside my lane, and learn something new. Back in Cape
+              Town now, ready to apply my analytical foundation in a broader business, strategic,
+              or operator role.
+            </p>
+          </div>
+          <aside class="about-aside reveal">
+            <h4>Core skills</h4>
+            <div class="skill-list">
+              <span class="skill-tag">Data analysis &amp; modelling</span>
+              <span class="skill-tag">Report writing</span>
+              <span class="skill-tag">Client management</span>
+              <span class="skill-tag">AutoCAD</span>
+              <span class="skill-tag">FEM analysis</span>
+              <span class="skill-tag">Microsoft Office</span>
+              <span class="skill-tag">AI tools (Claude / Copilot / NotebookLM)</span>
+              <span class="skill-tag">First principles thinking</span>
+            </div>
+            <h4>Currently</h4>
+            <p style="font-size: 0.92rem; color: var(--charcoal); line-height: 1.7;">
+              Cape Town. Open to analytical, generalist, operator, or strategic roles. Reading widely,
+              building side projects, training for the next mountain.
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
 
-    <div class="exp-item">
-      <div>
-        <div class="exp-date">Jan 2023 – Jun 2025</div>
-        <div class="exp-place">Cape Town, South Africa</div>
-      </div>
-      <div class="exp-content">
-        <h3>Civil Engineer (Geotechnical)</h3>
-        <div class="exp-co">SRK Consulting</div>
-        <ul class="exp-bullets">
-          <li>Worked in the tailings (mine waste) department across projects in South Africa, Ghana, and Angola — covering the full lifecycle from proposals through to delivery and reporting.</li>
-          <li>Led data analysis, design, and reporting on tailings storage facility design, monitoring, and closure projects, frequently as lead author working directly with clients.</li>
-          <li>Co-authored a published paper on seepage modelling for tailings facility closure planning (Tailings and Mine Waste Conference, Vancouver 2024).</li>
-          <li>Conducted on-site quality assurance for construction of a drainage system at a mine in Limpopo (2 months on site).</li>
-          <li>Championed AI adoption in the office through hands-on testing, feedback presentations, and peer training.</li>
-          <li>Supported project administration including proposals, invoicing, and scheduling alongside technical delivery.</li>
-        </ul>
-      </div>
-    </div>
+    <!-- ================ EXPERIENCE ================ -->
+    <section id="experience" class="block">
+      <div class="wrap">
+        <p class="section-label">Work</p>
+        <h2 class="section-title reveal">Two chapters. Very <em>different</em> pressures.</h2>
 
-    <div class="exp-item">
-      <div>
-        <div class="exp-date">Nov 2025 – Apr 2026</div>
-        <div class="exp-place">USA / Bahamas</div>
-      </div>
-      <div class="exp-content">
-        <h3>Superyacht Deckhand</h3>
-        <div class="exp-co">Private Motor Vessel</div>
-        <ul class="exp-bullets">
-          <li>Took initiative to secure the role independently, completing the required certifications and relocating to Florida.</li>
-          <li>Gained hands-on experience living and working in close quarters with a small international crew, learning to adapt quickly to different personalities and high-pressure situations.</li>
-          <li>Responsible for seamanship, navigation, vessel operations, and guest-facing service.</li>
-          <li>Gained insight into working for an ultra-high-net-worth family.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+        <div class="exp-card reveal">
+          <div class="exp-meta">
+            <div class="exp-date">Jan 2023 → Jun 2025</div>
+            <div class="exp-loc">Cape Town, South Africa</div>
+          </div>
+          <div>
+            <h3 class="exp-role">Civil Engineer (Geotechnical)</h3>
+            <div class="exp-company">SRK Consulting · Global engineering &amp; consulting firm</div>
+            <p class="exp-pitch">Full lifecycle tailings engineering across three African countries.</p>
+            <ul class="exp-highlights">
+              <li>Lead author on reports and client deliverables across tailings storage facility design, monitoring, and closure projects in South Africa, Ghana, and Angola.</li>
+              <li>Contributed to a published paper on seepage modelling for tailings closure planning, presented at the <a href="https://tailingsandminewaste.com/" target="_blank" rel="noopener">Tailings &amp; Mine Waste Conference, Vancouver 2024</a>.</li>
+              <li>Conducted two months of on site quality assurance for drainage system construction at a mine in Limpopo.</li>
+              <li>Championed AI adoption across the office through hands on testing, internal presentations, and peer training in Claude, Copilot, and NotebookLM.</li>
+              <li>Supported project administration including proposals, invoicing, and scheduling alongside technical delivery.</li>
+              <li>Social committee member, organising office events and culture initiatives.</li>
+            </ul>
+          </div>
+        </div>
 
-  <!-- ADVENTURES -->
-  <section id="adventures">
-    <p class="section-label">Photos</p>
-    <h2 class="section-title">Work &amp; <em>life</em></h2>
-    <p class="adventures-intro">
-      A mix of work, travel, and time spent outdoors.
-    </p>
+        <div class="exp-card reveal">
+          <div class="exp-meta">
+            <div class="exp-date">Nov 2025 → Apr 2026</div>
+            <div class="exp-loc">USA / Bahamas</div>
+          </div>
+          <div>
+            <h3 class="exp-role">Personal Chapter · Deckhand</h3>
+            <div class="exp-company">Private Motor Vessel · Florida / Bahamas</div>
+            <p class="exp-pitch">A short detour between chapters, in the spirit of a gap year.</p>
+            <ul class="exp-highlights">
+              <li>Pursued the role independently, completed the required certifications and relocated on my own timeline.</li>
+              <li>Lived and worked with a small international crew; adapted quickly to new people and fast moving situations.</li>
+              <li>A good reminder that backing yourself tends to open more doors than it closes.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <div class="photo-grid">
-      <div class="pc">
-        <div class="pc-img"><img src="yachting.jpg" alt="On the water" /></div>
-        <div class="pc-caption">On the water — Bahamas</div>
+    <!-- ================ EDUCATION ================ -->
+    <section id="education" class="block">
+      <div class="wrap">
+        <p class="section-label">Education</p>
+        <h2 class="section-title reveal">Formal training, and the <em>rest</em>.</h2>
+        <div class="edu-grid">
+          <div class="edu-card reveal">
+            <div class="edu-deg">BEng Civil Engineering</div>
+            <div class="edu-honor">Cum Laude</div>
+            <div class="edu-school">Stellenbosch University · 2019 to 2022</div>
+          </div>
+          <div class="edu-card reveal">
+            <div class="edu-deg">Quest Africa Gap Year</div>
+            <div class="edu-honor">Top Male Student, 2018</div>
+            <div class="edu-school">Character, leadership, and outdoors</div>
+            <a href="https://www.quest-africa.co.za/" target="_blank" rel="noopener" class="edu-link">About Quest →</a>
+          </div>
+          <div class="edu-card reveal">
+            <div class="edu-deg">British International College</div>
+            <div class="edu-honor">AS Level</div>
+            <div class="edu-school">High school</div>
+          </div>
+        </div>
       </div>
-      <div class="pc">
-        <div class="pc-img"><img src="Yachting2.jpg" alt="Life aboard" /></div>
-        <div class="pc-caption">Life onboard</div>
-      </div>
-      <div class="pc">
-        <div class="pc-img"><img src="kiting.jpg" alt="Kiteboarding" /></div>
-        <div class="pc-caption">Kiteboarding</div>
-      </div>
-      <div class="pc">
-        <div class="pc-img"><img src="6100m.jpg" alt="High altitude hiking" /></div>
-        <div class="pc-caption">South America — high altitude</div>
-      </div>
-      <div class="pc">
-        <div class="pc-img"><img src="SouthAmerica.jpg" alt="South America" /></div>
-        <div class="pc-caption">South America</div>
-      </div>
-      <div class="pc">
-        <div class="pc-img"><img src="Indonesia.jpg" alt="Indonesia" /></div>
-        <div class="pc-caption">Indonesia</div>
-      </div>
-      <div class="pc">
-        <div class="pc-img"><img src="Quest.jpg" alt="Quest Africa" /></div>
-        <div class="pc-caption">Quest Africa Gap Year</div>
-      </div>
-      <div class="pc">
-        <div class="pc-img"><img src="sitework.jpg" alt="On site, Limpopo" /></div>
-        <div class="pc-caption">On site — Limpopo</div>
-      </div>
-      <div class="pc">
-        <div class="pc-img"><img src="minework.jpg" alt="Mine site" /></div>
-        <div class="pc-caption">Mine site, South Africa</div>
-      </div>
-    </div>
+    </section>
 
-    <div class="highlights-grid">
-      <div class="hl-card">
-        <div class="hl-icon">🎒</div>
-        <div class="hl-title">Travel &amp; Adventure</div>
-        <div class="hl-desc">Backpacking and hiking through Patagonia, Bolivia, and Peru with gear support from First Ascent, and travel through Southeast Asia — hiking, photography, motorcycling, and scuba diving.</div>
-      </div>
-      <div class="hl-card">
-        <div class="hl-icon">⚓</div>
-        <div class="hl-title">Superyacht Deckhand</div>
-        <div class="hl-desc">Four months crewing a private motor vessel through Florida and the Bahamas. Small crew, big ocean.</div>
-      </div>
-      <div class="hl-card">
-        <div class="hl-icon">🌍</div>
-        <div class="hl-title">Quest Africa</div>
-        <div class="hl-desc">Gap year programme in South Africa focused on character development and pushing outside your comfort zone. Top Male Student 2018.</div>
-      </div>
-    </div>
-  </section>
+    <!-- ================ BEYOND ================ -->
+    <section id="beyond" class="block">
+      <div class="wrap">
+        <p class="section-label">Beyond the desk</p>
+        <h2 class="section-title reveal">A life that <em>compounds</em>.</h2>
+        <p class="beyond-intro reveal">
+          I seek experiences that broaden perspective and build resilience. Backpacking,
+          climbing, diving, kiting, sailing, and running are how I recharge, and where I meet
+          the most interesting people. A sample, below.
+        </p>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <p class="section-label">Get in touch</p>
-    <h2 class="section-title">Let's <em>talk</em></h2>
-    <p class="contact-text">
-      I'm open to conversations about analytical, generalist, or impact-driven roles —
-      in engineering, business, strategy, or anything in between.
-      If something here resonated, I'd love to hear from you.
-    </p>
-    <div class="contact-detail">
-      <span class="contact-icon">✉</span>
-      <a href="mailto:rowanlcjames@gmail.com">rowanlcjames@gmail.com</a>
-    </div>
-    <div class="contact-detail">
-      <span class="contact-icon">📞</span>
-      <a href="tel:+27825290310">+27 82 529 0310</a>
-    </div>
-    <div class="contact-detail">
-      <span class="contact-icon">📍</span>
-      <span>Cape Town, South Africa</span>
-    </div>
-  </section>
+        <div class="photo-grid">
+          <figure class="photo reveal"><img src="img/6100m.jpg" alt="High-altitude summit" loading="lazy" /><figcaption class="photo-cap">Bolivia · 6,100m</figcaption></figure>
+          <figure class="photo reveal"><img src="img/indonesia.jpg" alt="Indonesia" loading="lazy" /><figcaption class="photo-cap">Indonesia</figcaption></figure>
+          <figure class="photo reveal"><img src="img/sailing.jpg" alt="Sailing" loading="lazy" /><figcaption class="photo-cap">Sailing</figcaption></figure>
+          <figure class="photo reveal"><img src="img/kiting.jpg" alt="Kiteboarding" loading="lazy" /><figcaption class="photo-cap">Kiteboarding</figcaption></figure>
+          <figure class="photo reveal"><img src="img/rockclimbing.jpg" alt="Rock climbing" loading="lazy" /><figcaption class="photo-cap">Climbing</figcaption></figure>
+          <figure class="photo reveal"><img src="img/capetownmarathon.jpg" alt="Cape Town marathon" loading="lazy" /><figcaption class="photo-cap">Cape Town Marathon</figcaption></figure>
+          <figure class="photo reveal"><img src="img/yachting2.jpg" alt="Life aboard" loading="lazy" /><figcaption class="photo-cap">Aboard · Bahamas</figcaption></figure>
+          <figure class="photo reveal"><img src="img/quest.jpg" alt="Quest Africa" loading="lazy" /><figcaption class="photo-cap">Quest Africa, 2018</figcaption></figure>
+          <figure class="photo reveal"><img src="img/sitework.jpg" alt="On site Limpopo" loading="lazy" /><figcaption class="photo-cap">Site QA · Limpopo</figcaption></figure>
+          <figure class="photo reveal"><img src="img/minework.jpg" alt="Mine site" loading="lazy" /><figcaption class="photo-cap">Mine site, SA</figcaption></figure>
+          <figure class="photo reveal"><img src="img/yachting.jpg" alt="Deck watch" loading="lazy" /><figcaption class="photo-cap">Deck watch · Florida</figcaption></figure>
+        </div>
 
-  <!-- FOOTER -->
+        <div class="highlights">
+          <div class="highlight reveal">
+            <h4 class="highlight-title">Travel &amp; <em>adventure</em></h4>
+            <p class="highlight-body">
+              Backpacking and trekking through Patagonia, Bolivia, and Peru with gear
+              sponsorship from First Ascent, followed by months in Southeast Asia:
+              motorcycling, scuba diving, and surfing.
+            </p>
+          </div>
+          <div class="highlight reveal">
+            <h4 class="highlight-title">Outdoor <em>sports</em></h4>
+            <p class="highlight-body">
+              Kiteboarding, sailing, rock climbing, trail running, and mountain biking.
+              Most weekends, most seasons. Cape Town makes this unreasonably easy.
+            </p>
+          </div>
+          <div class="highlight reveal">
+            <h4 class="highlight-title">Quest <em>Africa</em></h4>
+            <p class="highlight-body">
+              A character building programme designed to push you well outside your comfort
+              zone. Leadership, resilience, and self reliance, earned the hard way. One of
+              the most formative things I've done. Top Male Student, 2018.
+              <a href="https://www.quest-africa.co.za/" target="_blank" rel="noopener">About the programme</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================ CONTACT ================ -->
+    <section id="contact" class="block">
+      <div class="wrap">
+        <p class="section-label">Next</p>
+        <h2 class="section-title reveal">Let's <em>talk</em>.</h2>
+        <div class="contact-grid">
+          <div class="reveal">
+            <p class="contact-lead">
+              Open to analytical, generalist, operator, or strategy roles in engineering,
+              business, or wherever rigorous thinking is valued. If something here resonated,
+              the quickest path is email or LinkedIn.
+            </p>
+            <div class="contact-actions">
+              <a href="R James CV 24042026.pdf" download class="btn-primary">
+                Download CV <span class="arrow">→</span>
+              </a>
+              <a href="rowan-james.vcf" download class="btn-ghost">Save contact</a>
+            </div>
+          </div>
+          <div class="contact-details reveal">
+            <div class="contact-row">
+              <span class="k">Email</span>
+              <a href="mailto:rowanlcjames@gmail.com">rowanlcjames@gmail.com</a>
+            </div>
+            <div class="contact-row">
+              <span class="k">Phone</span>
+              <a href="tel:+27825290310">+27 82 529 0310</a>
+            </div>
+            <div class="contact-row">
+              <span class="k">LinkedIn</span>
+              <a href="https://www.linkedin.com/in/rowan-james-27075a73" target="_blank" rel="noopener">View profile</a>
+            </div>
+            <div class="contact-row">
+              <span class="k">Based</span>
+              <span>Cape Town, South Africa</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================ FOOTER ================ -->
   <footer>
-    <span>© 2026 Rowan James</span>
-    <span>Cape Town · <a href="/cdn-cgi/l/email-protection#4f3d20382e21232c252e222a3c0f28222e2623612c2022"><span class="__cf_email__" data-cfemail="2a58455d4b444649404b474f596a4d474b434604494547">[email&#160;protected]</span></a></span>
+    <div class="foot-grid">
+      <span>© 2026 Rowan James · Cape Town, South Africa</span>
+      <span>Built with care. Hosted on GitHub.</span>
+    </div>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    const nav = document.querySelector('nav');
-    window.addEventListener('scroll', () => {
-      nav.style.boxShadow = window.scrollY > 20 ? '0 2px 24px rgba(28,26,22,0.08)' : 'none';
-    });
+  <script>
+    // Nav scroll state
+    const nav = document.getElementById('nav');
+    const onScroll = () => {
+      nav.classList.toggle('scrolled', window.scrollY > 12);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
 
-    function handleSubmit(e) {
-      e.preventDefault();
-      const name = e.target.querySelector('input[type=text]').value;
-      const email = e.target.querySelector('input[type=email]').value;
-      const msg = e.target.
+    // Reveal on scroll
+    const revealEls = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      revealEls.forEach((el) => io.observe(el));
+    } else {
+      revealEls.forEach((el) => el.classList.add('in'));
+    }
+  </script>
+</body>
+</html>

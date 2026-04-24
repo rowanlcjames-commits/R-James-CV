@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Rowan James
+N:James;Rowan;;;
+TITLE:Engineer / Analytical Generalist
+EMAIL;TYPE=INTERNET,PREF:rowanlcjames@gmail.com
+TEL;TYPE=CELL,VOICE:+27825290310
+ADR;TYPE=HOME:;;;Cape Town;;;South Africa
+URL;TYPE=LinkedIn:https://www.linkedin.com/in/rowan-james-27075a73
+NOTE:BEng Civil (Cum Laude) — Stellenbosch University, 2022. Civil engineer turned generalist. Published in tailings engineering (Vancouver 2024).
+END:VCARD
